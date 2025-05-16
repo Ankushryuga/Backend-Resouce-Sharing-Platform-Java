@@ -18,16 +18,29 @@ public class Tasks {
     private String taskName;
 
     @NotNull
-    @Enumerated(EnumType.STRING)
+    // @Enumerated(EnumType.STRING)
     @Column(name = "task_status")
-    @org.hibernate.annotations.ColumnDefault("'NEW'")
-    private TaskStatus status=TaskStatus.NEW;
+    private int status;
+    // @org.hibernate.annotations.ColumnDefault("'NEW'")
+    // private TaskStatus status=TaskStatus.NEW;
 
     private String taskDescription;
 
     @Convert(converter = AttachmentConverter.class)
     @Column(name = "attachments", columnDefinition = "TEXT")  // Store JSON as text
     private List<Attachment> attachments; // This is raw JSON string
+
+    private String type;
+
+    private int priorityId; 
+
+    private String resolution;
+
+    private String assignee;
+
+    private String reporter;
+
+    private int statusId;
 
     private String createdBy;
 
@@ -49,12 +62,18 @@ public class Tasks {
         this.taskName = taskName;
     }
 
-    public @NotNull TaskStatus getStatus() {
+    // public @NotNull TaskStatus getStatus() {
+    //     return status;
+    // }
+    public @NotNull int getStatus(){
         return status;
     }
 
-    public void setStatus(@NotNull TaskStatus status) {
-        this.status = status;
+    // public void setStatus(@NotNull TaskStatus status) {
+    //     this.status = status;
+    // }
+    public void setStatus(@NotNull int status){
+        this.status=status;
     }
 
     public String getTaskDescription() {
