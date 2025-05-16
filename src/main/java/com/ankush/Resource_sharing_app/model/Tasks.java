@@ -34,7 +34,7 @@ public class Tasks {
 
     private int priorityId; 
 
-    private String resolution;
+    private int resolutionId;
 
     private String assignee;
 
@@ -42,9 +42,16 @@ public class Tasks {
 
     private int statusId;
 
+    private LocalDate dueDate;
+
     private String createdBy;
 
+    private String updatedBy;
+
     private LocalDate createdAt;
+
+    private LocalDate updatedAt;
+
 
     public int getTaskId() {
         return taskId;

@@ -44,5 +44,23 @@ public class TasksHistory{
 
     private int status;
     
-    
+    private int changedStatus;
+
+    private int resoutionId;
+
+    private int changedResolutionId;
+
+    private String reporter;
+
+    private String changedReporter;
+
+    private int watchers;
+
+    private int changedWatchers;
+
+    private LocalDate dueDate;
+
+    private LocalDate changedDueDate;
+
+    private LocalDate updatedAt;
 }
