@@ -1,87 +1,140 @@
 package com.ankush.Resource_sharing_app.model.workStreams;
 
-
+import com.ankush.Resource_sharing_app.model.Tasks;
+import com.ankush.Resource_sharing_app.model.user.Users;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.apache.catalina.User;
+
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 public class WorkStreams{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int contentId;
+    @Column(name="workstream_id")
+    private int workStreamId;
 
     @NotNull
     private String contentName;
 
+    private String contentDescription;
+
     @NotNull    //later will add array of manager, contributers, etc...
     private String owner;
 
-    private List<userId> managers;
+    @ManyToMany
+    @JoinTable(name = "workstream_managers", joinColumns = @JoinColumn(name="workstream_id"), inverseJoinColumns = @JoinColumn(name="user_id"))
+    private List<Users> managers=new ArrayList<>();
 
-    private List<userId> reporters;
+    @ManyToMany
+    @JoinTable(name="workstream_reporters", joinColumns = @JoinColumn(name="workstream_id"), inverseJoinColumns = @JoinColumn(name="user_id"))
+    private List<Users> reporters=new ArrayList<>();
 
-    private List<userId> contributers;
+    @ManyToMany
+    @JoinTable(name="workstream_contributors", joinColumns = @JoinColumn(name="workstream_id"), inverseJoinColumns = @JoinColumn(name="user_id"))
+    private List<Users> contributers=new ArrayList<>();
 
-    private List<userId> testers;
+    @ManyToMany
+    @JoinTable(name="workstream_testers", joinColumns = @JoinColumn(name = "workstream_id"), inverseJoinColumns = @JoinColumn(name="user_id"))
+    private List<Users> testers=new ArrayList<>();
+
+    @OneToMany(mappedBy = "workStreams", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
+    private List<Tasks> tasks=new ArrayList<>();
 
     private LocalDate createdAt;
 
     private LocalDate updatedAt;
 
-    public int getContentId(){
-        return contentId;
+    public int getWorkStreamId() {
+        return workStreamId;
     }
-    public void setContentId(int contentId){
-        this.contentId=contentId;
-    }  
-    public @NotNull String getContentName(){
+
+    public void setWorkStreamId(int workStreamId) {
+        this.workStreamId = workStreamId;
+    }
+
+    public @NotNull String getContentName() {
         return contentName;
     }
-    public void setContentName(String contentName){
-        this.contentName=contentName;
+
+    public void setContentName(@NotNull String contentName) {
+        this.contentName = contentName;
     }
-    public @NotNull String getOwner(){
+
+    public String getContentDescription() {
+        return contentDescription;
+    }
+
+    public void setContentDescription(String contentDescription) {
+        this.contentDescription = contentDescription;
+    }
+
+    public @NotNull String getOwner() {
         return owner;
     }
-    public void setOwner(String owner){
-        this.owner=owner;
+
+    public void setOwner(@NotNull String owner) {
+        this.owner = owner;
     }
-    public LocalDate getCreatedAt(){
-        return createdAt;
-    }
-    public void setCreatedAt(LocalDate createdAt){
-        this.createdAt=createdAt;
-    }
-    public LocalDate updatedAt(){
-        return updatedAt;
-    }
-    public void setUpdatedAt(LocalDate updatedAt){
-        this.updatedAt=updatedAt;
-    }
-    public List<userId> getManagers(){
+
+    public List<Users> getManagers() {
         return managers;
     }
-    public void setManagers(List<userId> managers){
-        this.managers=managers;
+
+    public void setManagers(List<Users> managers) {
+        this.managers = managers;
     }
-    public List<userId> getReporters(){
-        return reporters
+
+    public List<Users> getReporters() {
+        return reporters;
     }
-    public void setReporters(List<userId> reporters){
-        this.reporters=reporters;
+
+    public void setReporters(List<Users> reporters) {
+        this.reporters = reporters;
     }
-    public List<userId> getContributers(){
+
+    public List<Users> getContributers() {
         return contributers;
     }
-    public void setContributers(List<userId> contributers){
-        this.contributers=contributers;
+
+    public void setContributers(List<Users> contributers) {
+        this.contributers = contributers;
     }
-    public List<userId> getTesters(){
+
+    public List<Users> getTesters() {
         return testers;
     }
-    public void setTesters(List<userId> testers){
-        this.testers=testers;
+
+    public void setTesters(List<Users> testers) {
+        this.testers = testers;
+    }
+
+    public List<Tasks> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Tasks> tasks) {
+        this.tasks = tasks;
+    }
+
+    public LocalDate getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDate createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public LocalDate getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDate updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

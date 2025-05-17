@@ -11,10 +11,49 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class Users{
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private int userId;
+    private Long userId;
 
     @NotNull
     private String username;
+
+
+    private String email;
+
+    @Convert(converter = UserSpecificFoldersConverter.class)
+    @Column(name = "user_specific_folders", columnDefinition = "TEXT")
+    private List<UserSpecificFolders> folder;
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public @NotNull String getUsername() {
+        return username;
+    }
+
+    public void setUsername(@NotNull String username) {
+        this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public List<UserSpecificFolders> getFolder() {
+        return folder;
+    }
+
+    public void setFolder(List<UserSpecificFolders> folder) {
+        this.folder = folder;
+    }
 }
 
 

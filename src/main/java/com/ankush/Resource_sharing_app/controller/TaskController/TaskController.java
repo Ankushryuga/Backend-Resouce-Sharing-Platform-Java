@@ -1,6 +1,6 @@
-package com.ankush.Resource_sharing_app.controller;
+package com.ankush.Resource_sharing_app.controller.TaskController;
 
-import com.ankush.Resource_sharing_app.dto.TaskResponseDTO;
+import com.ankush.Resource_sharing_app.dto.TaskDTO.TaskResponseDTO;
 import com.ankush.Resource_sharing_app.services.TaskServices;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;

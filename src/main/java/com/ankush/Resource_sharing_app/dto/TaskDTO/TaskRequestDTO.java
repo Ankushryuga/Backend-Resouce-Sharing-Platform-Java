@@ -1,4 +1,4 @@
-package com.ankush.Resource_sharing_app.dto;
+package com.ankush.Resource_sharing_app.dto.TaskDTO;
 
 //This file contains all the information for task request parameter for creating new taks
 
