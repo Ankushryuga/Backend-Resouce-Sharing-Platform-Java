@@ -1,4 +1,4 @@
-package com.ankush.Resource_sharing_app.dto;
+package com.ankush.Resource_sharing_app.dto.TaskDTO;
 
 import com.ankush.Resource_sharing_app.model.Attachment;
 import com.ankush.Resource_sharing_app.model.TaskStatus;

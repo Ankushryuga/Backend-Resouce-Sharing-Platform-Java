@@ -1,6 +1,6 @@
 package com.ankush.Resource_sharing_app.services;
 
-import com.ankush.Resource_sharing_app.dto.TaskResponseDTO;
+import com.ankush.Resource_sharing_app.dto.TaskDTO.TaskResponseDTO;
 import com.ankush.Resource_sharing_app.mapper.TaskMapper;
 import com.ankush.Resource_sharing_app.model.Tasks;
 import com.ankush.Resource_sharing_app.repository.TaskRepository;
