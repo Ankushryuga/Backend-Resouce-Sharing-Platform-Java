@@ -14,16 +14,46 @@ public class TaskRequestDTO {
     @NotBlank(message = "Task Name is required")
     private String taskName;
 
-    private TaskStatus status;
+    private int statusId;
 
     private String taskDescription;
 
     private List<Attachment> attachments; // This is raw JSON string
 
+    @NotNull(message = "Sprint is required")
+    private int sprintId;
+
+    private String type;
+
+    private int resolutionId;
+
+    private String assignee;
+
+    private int priorityId;
+
+    private String reporter;
+
+    private LocalDate dueDate;
+
+    public LocalDate getDueDate() {
+        return dueDate;
+    }
+
+    public void setDueDate(LocalDate dueDate) {
+        this.dueDate = dueDate;
+    }
+
+    public String getReporter() {
+        return reporter;
+    }
+
+    public void setReporter(String reporter) {
+        this.reporter = reporter;
+    }
+
     @NotNull(message = "CreatedBy is required")
     private String createdBy;
 
-    @NotNull(message = "Created date is required")
     private LocalDate createdAt;
 
     public @NotBlank(message = "Task Name is required") String getTaskName() {
@@ -32,14 +62,6 @@ public class TaskRequestDTO {
 
     public void setTaskName(@NotBlank(message = "Task Name is required") String taskName) {
         this.taskName = taskName;
-    }
-
-    public TaskStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(TaskStatus status) {
-        this.status = status;
     }
 
     public String getTaskDescription() {
@@ -58,6 +80,47 @@ public class TaskRequestDTO {
         this.attachments = attachments;
     }
 
+    @NotNull(message = "Sprint is required")
+    public int getSprintId() {
+        return sprintId;
+    }
+
+    public void setSprintId(@NotNull(message = "Sprint is required") int sprintId) {
+        this.sprintId = sprintId;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public int getResolutionId() {
+        return resolutionId;
+    }
+
+    public void setResolutionId(int resolutionId) {
+        this.resolutionId = resolutionId;
+    }
+
+    public String getAssignee() {
+        return assignee;
+    }
+
+    public void setAssignee(String assignee) {
+        this.assignee = assignee;
+    }
+
+    public int getPriorityId() {
+        return priorityId;
+    }
+
+    public void setPriorityId(int priorityId) {
+        this.priorityId = priorityId;
+    }
+
     public @NotNull(message = "CreatedBy is required") String getCreatedBy() {
         return createdBy;
     }
@@ -66,11 +129,19 @@ public class TaskRequestDTO {
         this.createdBy = createdBy;
     }
 
-    public @NotNull(message = "Created date is required") LocalDate getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(@NotNull(message = "Created date is required") LocalDate createdAt) {
+    public void setCreatedAt( LocalDate createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public int getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 }

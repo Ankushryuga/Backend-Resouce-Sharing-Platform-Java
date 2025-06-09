@@ -1,10 +1,11 @@
 package com.ankush.Resource_sharing_app.model.tasks;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.ankush.Resource_sharing_app.model.Tasks;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class TaskResolution {
@@ -14,6 +15,10 @@ public class TaskResolution {
 
     @NotNull
     private String resolutionName;
+
+    @OneToMany(mappedBy = "resolution", cascade = CascadeType.ALL)
+    private List<Tasks> tasks=new ArrayList<>();
+
 
     public int getResolutionId() {
         return resolutionId;
@@ -29,6 +34,14 @@ public class TaskResolution {
 
     public void setResolutionName(@NotNull String resolutionName) {
         this.resolutionName = resolutionName;
+    }
+
+    public List<Tasks> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Tasks> tasks) {
+        this.tasks = tasks;
     }
 }
 
