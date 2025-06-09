@@ -1,6 +1,7 @@
 package com.ankush.Resource_sharing_app.dto.WorkStreamsDTO;
 
 import com.ankush.Resource_sharing_app.model.Tasks;
+import com.ankush.Resource_sharing_app.model.sprints.Sprints;
 import com.ankush.Resource_sharing_app.model.user.Users;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -8,6 +9,7 @@ import jakarta.validation.constraints.Size;
 import org.apache.catalina.User;
 
 import java.util.List;
+import java.util.UUID;
 
 public class WorkStreamsRequestDTO {
 
@@ -20,16 +22,15 @@ public class WorkStreamsRequestDTO {
     @NotBlank(message = "Workstream owner is required")
     private String owner;
 
-    private List<Users> managers;
+    private List<Long> managers;
 
-    private List<Users> reporters;
+    private List<Long> reporters;
 
-    private List<Users> contributers;
+    private List<Long> contributers;
 
-    private List<Users> testers;
+    private List<Long> testers;
 
-    private List<Tasks> tasks;
-
+    private List<Integer> sprints;
 
     public @NotBlank(message = "Workstream name is required") @Size(max = 100, message = "Workstream name cannot exceed 100 characters") String getContentName() {
         return contentName;
@@ -55,44 +56,44 @@ public class WorkStreamsRequestDTO {
         this.owner = owner;
     }
 
-    public List<Users> getManagers() {
+    public List<Long> getManagers() {
         return managers;
     }
 
-    public void setManagers(List<Users> managers) {
+    public void setManagers(List<Long> managers) {
         this.managers = managers;
     }
 
-    public List<Users> getReporters() {
+    public List<Long> getReporters() {
         return reporters;
     }
 
-    public void setReporters(List<Users> reporters) {
+    public void setReporters(List<Long> reporters) {
         this.reporters = reporters;
     }
 
-    public List<Users> getContributers() {
+    public List<Long> getContributers() {
         return contributers;
     }
 
-    public void setContributers(List<Users> contributers) {
+    public void setContributers(List<Long> contributers) {
         this.contributers = contributers;
     }
 
-    public List<Users> getTesters() {
+    public List<Long> getTesters() {
         return testers;
     }
 
-    public void setTesters(List<Users> testers) {
+    public void setTesters(List<Long> testers) {
         this.testers = testers;
     }
 
-    public List<Tasks> getTasks() {
-        return tasks;
+    public List<Integer> getSprints() {
+        return sprints;
     }
 
-    public void setTasks(List<Tasks> tasks) {
-        this.tasks = tasks;
+    public void setSprints(List<Integer> sprints) {
+        this.sprints = sprints;
     }
 }
 

@@ -1,6 +1,7 @@
 package com.ankush.Resource_sharing_app.model.workStreams;
 
 import com.ankush.Resource_sharing_app.model.Tasks;
+import com.ankush.Resource_sharing_app.model.sprints.Sprints;
 import com.ankush.Resource_sharing_app.model.user.Users;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -11,6 +12,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+
+/***
+ * In future, will add department based on department, UI and data must come for digital, marketing etc..
+ *
+ */
 @Entity
 public class WorkStreams{
     @Id
@@ -23,32 +29,47 @@ public class WorkStreams{
 
     private String contentDescription;
 
+    @Column(nullable = false)
+    private Boolean active=true;    //default
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
     @NotNull    //later will add array of manager, contributers, etc...
     private String owner;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "workstream_managers", joinColumns = @JoinColumn(name="workstream_id"), inverseJoinColumns = @JoinColumn(name="user_id"))
     private List<Users> managers=new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="workstream_reporters", joinColumns = @JoinColumn(name="workstream_id"), inverseJoinColumns = @JoinColumn(name="user_id"))
     private List<Users> reporters=new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="workstream_contributors", joinColumns = @JoinColumn(name="workstream_id"), inverseJoinColumns = @JoinColumn(name="user_id"))
     private List<Users> contributers=new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="workstream_testers", joinColumns = @JoinColumn(name = "workstream_id"), inverseJoinColumns = @JoinColumn(name="user_id"))
     private List<Users> testers=new ArrayList<>();
 
     @OneToMany(mappedBy = "workStreams", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference
-    private List<Tasks> tasks=new ArrayList<>();
+    private List<Sprints> tasks=new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "workStreams", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Sprints> sprints=new ArrayList<>();
 
     private LocalDate createdAt;
 
     private LocalDate updatedAt;
+
 
     public int getWorkStreamId() {
         return workStreamId;
@@ -114,12 +135,20 @@ public class WorkStreams{
         this.testers = testers;
     }
 
-    public List<Tasks> getTasks() {
+    public List<Sprints> getTasks() {
         return tasks;
     }
 
-    public void setTasks(List<Tasks> tasks) {
+    public void setTasks(List<Sprints> tasks) {
         this.tasks = tasks;
+    }
+
+    public List<Sprints> getSprints() {
+        return sprints;
+    }
+
+    public void setSprints(List<Sprints> sprints) {
+        this.sprints = sprints;
     }
 
     public LocalDate getCreatedAt() {

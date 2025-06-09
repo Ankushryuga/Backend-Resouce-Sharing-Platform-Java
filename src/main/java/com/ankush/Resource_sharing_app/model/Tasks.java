@@ -1,7 +1,10 @@
 package com.ankush.Resource_sharing_app.model;
 
+import com.ankush.Resource_sharing_app.model.sprints.Sprints;
+import com.ankush.Resource_sharing_app.model.tasks.Priority;
 import com.ankush.Resource_sharing_app.model.tasks.TaskResolution;
 import com.ankush.Resource_sharing_app.model.workStreams.WorkStreams;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
@@ -17,18 +20,16 @@ public class Tasks {
     private int taskId;
 
     @ManyToOne
-    @JoinColumn(name="workstream_id")
-    private WorkStreams workStreams;
+    @JoinColumn(name="sprint_id")
+    @JsonBackReference
+    private Sprints sprints;
 
     @NotNull
     private String taskName;
 
-    @NotNull
-    // @Enumerated(EnumType.STRING)
-    @Column(name = "task_status")
-    private int status;
-    // @org.hibernate.annotations.ColumnDefault("'NEW'")
-    // private TaskStatus status=TaskStatus.NEW;
+    @ManyToOne
+    @JoinColumn(name="status_id")
+    private TaskStatus status;
 
     private String taskDescription;
 
@@ -38,7 +39,9 @@ public class Tasks {
 
     private String type;
 
-    private int priorityId; 
+    @ManyToOne
+    @JoinColumn(name = "priority_id")
+    private Priority priority;
 
 //    private int resolutionId;
 
@@ -50,8 +53,6 @@ public class Tasks {
 
     private String reporter;
 
-    private int statusId;
-
     private LocalDate dueDate;
 
     private String createdBy;
@@ -62,6 +63,9 @@ public class Tasks {
 
     private LocalDate updatedAt;
 
+    // Getters and setters for other fields
+
+
     public int getTaskId() {
         return taskId;
     }
@@ -70,12 +74,12 @@ public class Tasks {
         this.taskId = taskId;
     }
 
-    public WorkStreams getWorkStreams() {
-        return workStreams;
+    public Sprints getSprints() {
+        return sprints;
     }
 
-    public void setWorkStreams(WorkStreams workStreams) {
-        this.workStreams = workStreams;
+    public void setSprints(Sprints sprints) {
+        this.sprints = sprints;
     }
 
     public @NotNull String getTaskName() {
@@ -86,12 +90,11 @@ public class Tasks {
         this.taskName = taskName;
     }
 
-    @NotNull
-    public int getStatus() {
+    public TaskStatus getStatus() {
         return status;
     }
 
-    public void setStatus(@NotNull int status) {
+    public void setStatus(TaskStatus status) {
         this.status = status;
     }
 
@@ -119,12 +122,12 @@ public class Tasks {
         this.type = type;
     }
 
-    public int getPriorityId() {
-        return priorityId;
+    public Priority getPriority() {
+        return priority;
     }
 
-    public void setPriorityId(int priorityId) {
-        this.priorityId = priorityId;
+    public void setPriority(Priority priority) {
+        this.priority = priority;
     }
 
     public TaskResolution getResolution() {
@@ -149,14 +152,6 @@ public class Tasks {
 
     public void setReporter(String reporter) {
         this.reporter = reporter;
-    }
-
-    public int getStatusId() {
-        return statusId;
-    }
-
-    public void setStatusId(int statusId) {
-        this.statusId = statusId;
     }
 
     public LocalDate getDueDate() {
@@ -198,6 +193,4 @@ public class Tasks {
     public void setUpdatedAt(LocalDate updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    // Getters and setters for other fields
 }

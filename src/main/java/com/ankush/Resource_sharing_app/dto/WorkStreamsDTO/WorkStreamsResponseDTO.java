@@ -1,6 +1,9 @@
 package com.ankush.Resource_sharing_app.dto.WorkStreamsDTO;
 
+import com.ankush.Resource_sharing_app.dto.SprintDTO.SprintResponseDTO;
+import com.ankush.Resource_sharing_app.dto.UserDTO.UserResponseDTO;
 import com.ankush.Resource_sharing_app.model.Tasks;
+import com.ankush.Resource_sharing_app.model.sprints.Sprints;
 import com.ankush.Resource_sharing_app.model.user.Users;
 import jakarta.validation.constraints.NotNull;
 
@@ -12,16 +15,26 @@ public class WorkStreamsResponseDTO {
     private String contentName;
     private String contentDescription;
     private String owner;
+    private Boolean active;
 
-    private List<Users> managers;
+    public Boolean getActive() {
+        return active;
+    }
 
-    private List<Users> reporters;
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
 
-    private List<Users> contributers;
+    private List<UserResponseDTO> managers;
 
-    private List<Users> testers;
+    private List<UserResponseDTO> reporters;
 
-    private List<Tasks> tasks;
+    private List<UserResponseDTO> contributers;
+
+    private List<UserResponseDTO> testers;
+//
+    private List<Sprints> sprints;
+
 
     public int getWorkStreamId() {
         return workStreamId;
@@ -55,43 +68,43 @@ public class WorkStreamsResponseDTO {
         this.owner = owner;
     }
 
-    public List<Users> getManagers() {
+    public List<UserResponseDTO> getManagers() {
         return managers;
     }
 
-    public void setManagers(List<Users> managers) {
+    public void setManagers(List<UserResponseDTO> managers) {
         this.managers = managers;
     }
 
-    public List<Users> getReporters() {
+    public List<UserResponseDTO> getReporters() {
         return reporters;
     }
 
-    public void setReporters(List<Users> reporters) {
+    public void setReporters(List<UserResponseDTO> reporters) {
         this.reporters = reporters;
     }
 
-    public List<Users> getContributers() {
+    public List<UserResponseDTO> getContributers() {
         return contributers;
     }
 
-    public void setContributers(List<Users> contributers) {
+    public void setContributers(List<UserResponseDTO> contributers) {
         this.contributers = contributers;
     }
 
-    public List<Users> getTesters() {
+    public List<UserResponseDTO> getTesters() {
         return testers;
     }
 
-    public void setTesters(List<Users> testers) {
+    public void setTesters(List<UserResponseDTO> testers) {
         this.testers = testers;
     }
 
-    public List<Tasks> getTasks() {
-        return tasks;
+    public List<Sprints> getSprints() {
+        return sprints;
     }
 
-    public void setTasks(List<Tasks> tasks) {
-        this.tasks = tasks;
+    public void setSprints(List<Sprints> sprints) {
+        this.sprints = sprints;
     }
 }
