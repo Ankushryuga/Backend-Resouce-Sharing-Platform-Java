@@ -3,6 +3,8 @@ package com.ankush.Resource_sharing_app.model.sprints;
 import com.ankush.Resource_sharing_app.model.workStreams.WorkStreams;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+
 @Entity
 public class Sprints {
     @Id
@@ -15,6 +17,35 @@ public class Sprints {
 
     private String sprintName;
 
+    private LocalDate startDate;
+
+    private LocalDate endDate;
+
+    private String createdBy;
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public void setStartDate(LocalDate startDate) {
+        this.startDate = startDate;
+    }
+
+    public LocalDate getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(LocalDate endDate) {
+        this.endDate = endDate;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
     /***
      * Will add sprint descriptions:

@@ -13,6 +13,9 @@ public class SprintMapper {
         WorkStreams workStreams=new WorkStreams();
         workStreams.setWorkStreamId(dto.getWorkStreamId());
         sprints.setWorkStreams(workStreams);
+        sprints.setCreatedBy(dto.getCreatedBy());
+        sprints.setStartDate(dto.getStartDate());
+        sprints.setEndDate(dto.getEndDate());
         return sprints;
     }
 
@@ -20,6 +23,9 @@ public class SprintMapper {
         SprintResponseDTO sprintResponseDTO=new SprintResponseDTO();
         sprintResponseDTO.setSprintId(sprints.getSprintId());
         sprintResponseDTO.setSprintName(sprints.getSprintName());
+        sprintResponseDTO.setCreatedby(sprints.getCreatedBy());
+        sprintResponseDTO.setStartDate(sprints.getStartDate());
+        sprintResponseDTO.setEndDate(sprints.getEndDate());
         if(sprints.getWorkStreams()!=null){
             sprintResponseDTO.setWorkStreamId(sprints.getWorkStreams().getWorkStreamId());
         }
